@@ -1,20 +1,19 @@
 import React, { type PropsWithChildren } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Button, SafeAreaView, StatusBar, StyleSheet, Text, View, } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Login } from './src/components';
+import { Login, Home } from './src/components';
 const App = () => {
   const Stack = createNativeStackNavigator();
+  const test = true
   return (
-    <SafeAreaView >
-      <StatusBar />
+    <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} options={{ title: 'Welcome', headerShown: false }} />
+          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-      </ScrollView>
     </SafeAreaView>
   );
 };
