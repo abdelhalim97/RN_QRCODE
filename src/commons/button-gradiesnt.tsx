@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient'
 const ButtonGradient = ({ text, fnc, colorFrom = '#26364E', colorTo = '#3B5197' }: ButtonDarkInt) => {
     return (
         <LinearGradient colors={[colorFrom, colorTo]}
-            style={{ borderRadius: 20, width: '60%', height: 40, marginTop: 20 }}
+            style={{ borderRadius: 20, width: '80%', height: 55, marginTop: 20, justifyContent: 'center', }}
             start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}>
             <Text onPress={fnc} style={styles.buttonText}>
                 {text}

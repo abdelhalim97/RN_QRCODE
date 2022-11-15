@@ -1,18 +1,30 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { InputGradient, Gradient } from '../commons'
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { InputGradient, Gradient, ButtonGradient } from '../commons'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack';
+
 const image = require('../assets/images/laptop.jpg')
 
 const Login = () => {
-
+    const [email, setEmail] = useState('')
+    const [pass, setPass] = useState('')
+    const navigation = useNavigation<StackNavigationProp<any>>()
     return (
         <Gradient fromColor='#285CA3' toColor='#516AD3'>
             <Image source={image} style={styles.halfCircle} />
-            <View style={{ justifyContent: 'center', paddingHorizontal: 25 }}>
+            <View style={{ alignItems: 'center', paddingHorizontal: 25, width: '100%' }}>
                 <Text style={styles.title}>Welcome Back</Text>
                 <Text style={styles.paragraph}>Login to your account</Text>
-                <InputGradient />
-                <Text style={styles.paragraph}>Don't have an account? signup</Text>
+                <InputGradient text='Email' onChangeText={text => setEmail(text)} keyboardType='email-address' autoFocus />
+                <InputGradient text='Password' onChangeText={text => setPass(text)} secureTextEntry />
+                <ButtonGradient text='Login' fnc={() => navigation.navigate('Login')} />
+                <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                    <Text style={styles.paragraph}>Don't have an account?{' '}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                        <Text style={{ fontSize: 20, color: '#fff' }}>signup</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </Gradient>
     )
@@ -29,16 +41,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'yellow'
     },
-    imageWrapper: {
-        width: 125, // half of the image width
-        height: 250,
-        backgroundColor: 'transparent',
-        overflow: 'hidden'
-    },
-    image: {
-        width: 250,
-        height: 250,
-        borderRadius: 125, // half of the image width
-        backgroundColor: 'transparent'
-    }
 });
