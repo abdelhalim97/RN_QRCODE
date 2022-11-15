@@ -1,4 +1,5 @@
 import Gradient from './gradient'
-import ButtonDark from './button-dark'
+import ButtonGradient from './button-gradiesnt'
+import InputGradient from './input-gradient'
 
-export { Gradient, ButtonDark }
+export { Gradient, ButtonGradient, InputGradient }

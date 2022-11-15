@@ -1,21 +1,22 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { ButtonDark, Gradient } from '../commons'
+import { ButtonGradient, Gradient } from '../commons'
 import { useNavigation } from '@react-navigation/native';
 
-const image = require('../assets/images/1.png')
+const image = require('../assets/images/card.png')
 const Home = () => {
     const navigation = useNavigation();
 
     return (
-        <Gradient fromColor='#285CA3' toColor='#516AD3' >
+        <Gradient fromColor='#285CA3' toColor='#516AD3'>
             <View style={styles.container}>
                 <Image source={image} />
                 <View>
-                    <Text style={{ fontSize: 40, color: '#fff' }}>Quickscan</Text>
+                    <Text style={styles.title}>Quickscan</Text>
                 </View>
-                <View>
-                    <ButtonDark text='Login' fnc={() => navigation.navigate('Login')} />
+                <View style={{ width: '100%', alignItems: 'center' }}>
+                    <ButtonGradient text='Login' fnc={() => navigation.navigate('Login')} />
+                    <ButtonGradient text='Signup' fnc={() => navigation.navigate('Signup')} />
                 </View>
             </View>
         </Gradient>
@@ -23,6 +24,7 @@ const Home = () => {
 }
 export default Home
 const styles = StyleSheet.create({
+    title: { fontSize: 40, color: '#fff' },
     container: {
         flex: 1, justifyContent: 'space-around', paddingHorizontal: 25, alignItems: 'center'
     }
