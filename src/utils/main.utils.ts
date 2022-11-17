@@ -1,4 +1,5 @@
-import { KeyboardType, TextInput } from "react-native";
+import { KeyboardType, ViewProps } from "react-native";
+
 export interface ButtonDarkInt {
   text: string;
   fnc: () => void;
@@ -17,3 +18,4 @@ export interface InputGradiesnt {
   colorTo?: string;
   autoFocus?: boolean;
 }
+export type GradientProps = { fromColor: string, toColor: string, children?: any } & ViewProps
