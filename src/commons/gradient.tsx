@@ -1,25 +1,33 @@
-import { View, StyleSheet, ViewProps } from 'react-native'
-import Svg, { Defs, Rect, LinearGradient, Stop } from 'react-native-svg'
+import { StyleSheet, View } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+import { GradientProps } from '../utils/main.utils'
 
-type GradientProps = { fromColor: string, toColor: string, children?: any, height?: number | string, opacityColor1?: number, opacityColor2?: number } & ViewProps
-
-const Gradient = ({ children, fromColor, toColor, height = '100%', opacityColor1 = 1, opacityColor2 = 1, ...otherViewProps }: GradientProps) => {
-    const gradientUniqueId = `grad${fromColor}+${toColor}`.replace(/[^a-zA-Z0-9 ]/g, '')
-    return <>
-        <View style={[{ ...StyleSheet.absoluteFillObject, height, zIndex: -1, top: 0, left: 0 }, otherViewProps.style]} {...otherViewProps}>
-            <Svg height='100%' width="100%" style={StyleSheet.absoluteFillObject}>
-                <Defs>
-                    <LinearGradient id={gradientUniqueId} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <Stop offset="0" stopColor={fromColor} stopOpacity={opacityColor1} />
-                        <Stop offset="0.5" stopColor={toColor} stopOpacity={opacityColor2} />
-                        <Stop offset="1" stopColor={fromColor} stopOpacity={opacityColor2} />
-                    </LinearGradient>
-                </Defs>
-                <Rect width="100%" height="100%" fill={`url(#${gradientUniqueId})`} />
-            </Svg>
-        </View>
-        {children}
-    </>
-};
-
+const Gradient = ({ children, fromColor, toColor, ...otherProps }: GradientProps) => {
+    return (
+        <LinearGradient
+            colors={[fromColor, toColor]}
+            style={styles.container}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+        >
+            <View style={{ flex: 1, width: "100%" }}>
+                {children}
+            </View>
+        </LinearGradient>
+    )
+}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    linearGradient: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        height: 200,
+        width: 350,
+    },
+})
 export default Gradient
