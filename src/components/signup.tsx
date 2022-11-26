@@ -1,10 +1,8 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, FlatList, Pressable } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, } from 'react-native'
 import React, { useState } from 'react'
-import LinearGradient from 'react-native-linear-gradient' // import LinearGradient
 import { ButtonGradient, Gradient, InputGradient } from '../commons'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { Dimensions } from 'react-native';
 
 
 const image = require('../assets/images/laptop.jpg')
@@ -26,11 +24,11 @@ const Signup = () => {
                     <InputGradient text='Email' onChangeText={text => setEmail(text)} keyboardType='email-address' />
                     <InputGradient text='Password' onChangeText={text => setConfirmPass(text)} secureTextEntry />
                     <InputGradient text='Confirm password' onChangeText={text => setPass(text)} secureTextEntry />
-                    <ButtonGradient text='Login' fnc={() => navigation.navigate('Login')} />
+                    <ButtonGradient text='Signup' fnc={() => navigation.navigate('Login')} />
                     <View style={{ flexDirection: 'row', marginVertical: 10 }}>
-                        <Text style={styles.paragraph}>Don't have an account?{' '}</Text>
-                        <TouchableOpacity onPress={() => useNavigation.navigate('Login')}>
-                            <Text style={{ fontSize: 20, color: '#fff' }}>signup</Text>
+                        <Text style={styles.paragraph}>You have an account?{' '}</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                            <Text style={{ fontSize: 20, color: '#fff' }}>Login</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -44,10 +42,6 @@ const styles = StyleSheet.create({
     halfCircle: {
         borderBottomLeftRadius: 1000, height: 220,
         borderBottomRightRadius: 1000, width: '100%'
-    },
-    imageContainer: {
-        alignItems: 'center',
-        backgroundColor: 'yellow'
     },
 })
 export default Signup

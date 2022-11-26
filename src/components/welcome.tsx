@@ -2,10 +2,11 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ButtonGradient, Gradient } from '../commons'
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const image = require('../assets/images/card.png')
-const Home = () => {
-    const navigation = useNavigation();
+const Welcome = () => {
+    const navigation = useNavigation<StackNavigationProp<any>>()
 
     return (
         <Gradient fromColor='#285CA3' toColor='#516AD3'>
@@ -22,7 +23,7 @@ const Home = () => {
         </Gradient>
     )
 }
-export default Home
+export default Welcome
 const styles = StyleSheet.create({
     title: { fontSize: 40, color: '#fff' },
     container: {
