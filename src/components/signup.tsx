@@ -24,7 +24,7 @@ const Signup = () => {
                     <InputGradient text='Email' onChangeText={text => setEmail(text)} keyboardType='email-address' />
                     <InputGradient text='Password' onChangeText={text => setConfirmPass(text)} secureTextEntry />
                     <InputGradient text='Confirm password' onChangeText={text => setPass(text)} secureTextEntry />
-                    <ButtonGradient text='Signup' fnc={() => navigation.navigate('Login')} />
+                    <ButtonGradient text='Signup' fnc={() => navigation.navigate('Scanner')} />
                     <View style={{ flexDirection: 'row', marginVertical: 10 }}>
                         <Text style={styles.paragraph}>You have an account?{' '}</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
