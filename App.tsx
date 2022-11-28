@@ -9,10 +9,10 @@ const App = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{ headerShown: true }} />
           <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
           <Stack.Screen name="Scanner" component={Scanner} options={{ headerShown: true }} />
-          <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
 
         </Stack.Navigator>
       </NavigationContainer>

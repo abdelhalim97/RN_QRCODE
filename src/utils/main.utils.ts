@@ -5,6 +5,7 @@ export interface ButtonDarkInt {
   fnc: () => void;
   colorFrom?: string;
   colorTo?: string;
+  marginTop?: number;
 }
 export interface InputGradiesnt {
   // text: string;
