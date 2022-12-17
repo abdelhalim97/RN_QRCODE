@@ -18,7 +18,7 @@ const Login = () => {
                 <Text style={styles.paragraph}>Login to your account</Text>
                 <InputGradient text='Email' onChangeText={text => setEmail(text)} keyboardType='email-address' autoFocus />
                 <InputGradient text='Password' onChangeText={text => setPass(text)} secureTextEntry />
-                <ButtonGradient text='Login' fnc={() => navigation.navigate('Login')} />
+                <ButtonGradient text='Login' fnc={() => navigation.navigate('Scanner')} />
                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                     <Text style={styles.paragraph}>Don't have an account?{' '}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
