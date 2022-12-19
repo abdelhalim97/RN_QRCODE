@@ -1,14 +1,43 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { InputGradient, Gradient, ButtonGradient } from '../commons'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack';
+import {API_URL} from "@env"
+import { TokenContext } from '../contexts/token-context';
 
 const image = require('../assets/images/laptop.jpg')
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
+    const {token,setToken} = useContext(TokenContext)
+    // const getMoviesFromApi = async() => {
+    //     try {
+    //         const response = await fetch('http://192.168.1.101:3000/products')
+    //         const json = await response.json();
+    //         console.log(json);
+    //         return json;
+    //       } catch (error) {
+    //         console.error(error);
+    //       }
+    //   };
+    const loginPost=async()=>{
+        try {
+            const res = await fetch(API_URL+'/users/signin', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json','Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email,password: pass}),
+                })
+                const json = await res.json();
+                setToken(json.token)
+                navigation.navigate('Welcome')
+        } catch (error) {
+            console.error(error);
+        }
+    }
     const navigation = useNavigation<StackNavigationProp<any>>()
     return (
         <Gradient fromColor='#285CA3' toColor='#516AD3'>
@@ -18,10 +47,10 @@ const Login = () => {
                 <Text style={styles.paragraph}>Login to your account</Text>
                 <InputGradient text='Email' onChangeText={text => setEmail(text)} keyboardType='email-address' autoFocus />
                 <InputGradient text='Password' onChangeText={text => setPass(text)} secureTextEntry />
-                <ButtonGradient text='Login' fnc={() => navigation.navigate('Scanner')} />
+                <ButtonGradient text='Login' fnc={() => loginPost()} />
                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                     <Text style={styles.paragraph}>Don't have an account?{' '}</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                    <TouchableOpacity onPress={() =>navigation.navigate('Signup') }>
                         <Text style={{ fontSize: 20, color: '#fff' }}>signup</Text>
                     </TouchableOpacity>
                 </View>

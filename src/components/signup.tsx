@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ButtonGradient, Gradient, InputGradient } from '../commons'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-
+import {API_URL} from "@env"
 
 const image = require('../assets/images/laptop.jpg')
 
