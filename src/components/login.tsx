@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { InputGradient, Gradient, ButtonGradient } from '../commons'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack';
-import {API_URL} from "@env"
+import { API_URL } from "@env"
 import { TokenContext } from '../contexts/token-context';
 
 const image = require('../assets/images/laptop.jpg')
@@ -11,29 +11,21 @@ const image = require('../assets/images/laptop.jpg')
 const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const {token,setToken} = useContext(TokenContext)
-    // const getMoviesFromApi = async() => {
-    //     try {
-    //         const response = await fetch('http://192.168.1.101:3000/products')
-    //         const json = await response.json();
-    //         console.log(json);
-    //         return json;
-    //       } catch (error) {
-    //         console.error(error);
-    //       }
-    //   };
-    const loginPost=async()=>{
+    const { token, setToken } = useContext(TokenContext)
+    const loginPost = async () => {
         try {
-            const res = await fetch(API_URL+'/users/signin', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json','Content-Type': 'application/json',
-            },
-            body: JSON.stringify({email,password: pass}),
-                })
-                const json = await res.json();
+            const res = await fetch(API_URL + '/users/signin', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json', 'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password: pass }),
+            })
+            const json = await res.json();
+            if (res.status == 201) {
                 setToken(json.token)
-                navigation.navigate('Welcome')
+                navigation.navigate('Generator')
+            }
         } catch (error) {
             console.error(error);
         }
@@ -50,7 +42,7 @@ const Login = () => {
                 <ButtonGradient text='Login' fnc={() => loginPost()} />
                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                     <Text style={styles.paragraph}>Don't have an account?{' '}</Text>
-                    <TouchableOpacity onPress={() =>navigation.navigate('Signup') }>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <Text style={{ fontSize: 20, color: '#fff' }}>signup</Text>
                     </TouchableOpacity>
                 </View>
