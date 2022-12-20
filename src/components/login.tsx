@@ -11,7 +11,7 @@ const image = require('../assets/images/laptop.jpg')
 const Login = () => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const { token, setToken } = useContext(TokenContext)
+    const { token, setToken, setRole } = useContext(TokenContext)
     const loginPost = async () => {
         try {
             const res = await fetch(API_URL + '/users/signin', {
@@ -24,6 +24,7 @@ const Login = () => {
             const json = await res.json();
             if (res.status == 201) {
                 setToken(json.token)
+                setRole(json.role)
                 navigation.navigate('Generator')
             }
         } catch (error) {
